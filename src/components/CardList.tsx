@@ -92,12 +92,14 @@ export default function CardList({ tags, items }: CardListProps) {
       <div className="my-3">
         <ul role="list" className="grid md:grid-cols-2 gap-4">
           {filteredItems.map((card) => (
-            <CardItem
-              href={card.href}
-              title={card.title}
-              body={card.body}
-              badges={card.badges}
-            />
+            <li key={card.title}>
+              <CardItem
+                href={card.href}
+                title={card.title}
+                body={card.body}
+                badges={card.badges}
+              />
+            </li>
           ))}
         </ul>
       </div>

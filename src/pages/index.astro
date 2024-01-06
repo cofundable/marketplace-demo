@@ -45,7 +45,7 @@ const topics = [...new Set(topicArr.flat())];
         </h1>
       </section>
       <section class="container mt-6 mb-8">
-        <CardList tags={topics} items={cards} client:idle />
+        <CardList tags={topics} items={cards} client:load />
       </section>
     </div>
   </main>

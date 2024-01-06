@@ -11,7 +11,7 @@ export default function name({ badges }: Props) {
     Array.isArray(badges) && (
       <ul role="list" className="flex flex-wrap gap-1">
         {badges.map((badgeName) => (
-          <li>
+          <li key={badgeName}>
             <Badge variant={"default"} className="hover:bg-primary">
               {badgeName}
             </Badge>
