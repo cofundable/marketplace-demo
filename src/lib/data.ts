@@ -1,13 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-export interface OrgProps {
-  name: string;
-  description: string;
-  causes: string[];
-  tags: string[];
-  isFeatured: boolean;
-  sharesCount: number;
-}
+import type { OrgProps } from "@/types";
 
 /**
  * Optional parameters to set explicitly when generating a fake org
@@ -17,9 +10,7 @@ export interface OrgProps {
  */
 interface OrgParams {
   isFeatured?: boolean;
-  /* Optionally add a specific cause to the fake org's list of causes */
   cause?: string;
-  /* Optionally add a specific tag to the fake org's list of causes */
   tag?: string;
 }
 
@@ -41,7 +32,7 @@ function createFakeOrg({ isFeatured, tag, cause }: OrgParams): OrgProps {
     : ["Education", "Children"];
   return {
     name: faker.company.name(),
-    description: faker.company.catchPhrase(),
+    description: faker.lorem.words({ min: 10, max: 15 }),
     causes: causes,
     tags: tags,
     isFeatured: isFeatured || Math.random() > 0.5, // randomly return boolean value
