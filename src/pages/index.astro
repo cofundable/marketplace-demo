@@ -1,7 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import OrgCardList from "@/components/OrgCardList";
 import CardList from "@/components/CardList";
 import type { CardProps } from "@/types";
+import { fetchOrgs } from "@/lib/data";
 
 const cards = [
   {
@@ -32,6 +34,7 @@ const cards = [
 
 const topicArr = cards.map((cards) => cards.badges);
 const topics = [...new Set(topicArr.flat())];
+const orgs = await fetchOrgs({ limit: 10 });
 ---
 
 <Layout title="Welcome to Astro.">
@@ -46,6 +49,11 @@ const topics = [...new Set(topicArr.flat())];
       </section>
       <section class="container mt-6 mb-8">
         <CardList tags={topics} items={cards} client:load />
+      </section>
+    </div>
+    <div class="container max-w-6xl pr-0">
+      <section class="container mt-6 mb-8">
+        <OrgCardList orgs={orgs} heading="Featured" />
       </section>
     </div>
   </main>

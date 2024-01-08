@@ -2,11 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const defaultCardClassNames = `
-  rounded-lg border bg-card text-card-foreground shadow-sm
-  hover:shadow-md hover:-translate-y-1
-  focus:shadow-md focus:-translate-y-1
-`;
+const defaultCardClassNames = `rounded-lg border bg-card text-card-foreground shadow-sm`;
 
 const Card = React.forwardRef<
   HTMLDivElement,
