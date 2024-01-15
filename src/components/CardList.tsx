@@ -92,7 +92,7 @@ export default function CardList({ tags, items }: CardListProps) {
       <div className="my-3">
         <ul role="list" className="grid md:grid-cols-2 gap-4">
           {filteredItems.map((card) => (
-            <li key={card.title}>
+            <li key={card.title} className="flex flex-col">
               <CardItem
                 href={card.href}
                 title={card.title}

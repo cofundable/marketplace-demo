@@ -15,12 +15,12 @@ const interactiveLinkClasses = `
 
 export default function CardItem({ href, title, body, badges }: CardProps) {
   return (
-    <a href={href}>
-      <Card className={interactiveLinkClasses}>
+    <a href={href} className="flex flex-col flex-1">
+      <Card className={`${interactiveLinkClasses} flex flex-col flex-1`}>
         <CardHeader className="pt-4 pb-2 tracking-normal">
           <CardTitle className="text-xl">{title}</CardTitle>
         </CardHeader>
-        <CardContent className="pb-4">
+        <CardContent className="pb-4 grow">
           <p className="text-lg text-primary/70">{body}</p>
         </CardContent>
         <CardFooter>
