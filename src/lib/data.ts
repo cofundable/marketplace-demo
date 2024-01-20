@@ -31,6 +31,7 @@ function createFakeOrg({ isFeatured, tag, cause }: OrgParams): OrgProps {
     ? ["Environment", "Workforce development", cause]
     : ["Education", "Children"];
   return {
+    id: faker.string.uuid(),
     name: faker.company.name(),
     description: faker.lorem.words({ min: 10, max: 15 }),
     causes: causes,
@@ -60,13 +61,19 @@ export function mockFetchOrgs({
   );
 }
 
+const orgs = mockFetchOrgs({ limit: 50 });
+console.log(orgs.map((org) => org.name));
+
 /**
  * Fetch an array of orgs, optionally filtering by tags, categories, or featured status
  * @param fetchParams
  * @returns A promise with an array of organizations
  */
-export async function fetchOrgs(
-  fetchParams: FetchOrgParams
-): Promise<OrgProps[]> {
-  return mockFetchOrgs(fetchParams);
+export async function fetchOrgs({
+  limit,
+  isFeatured,
+  tag,
+  cause,
+}: FetchOrgParams): Promise<OrgProps[]> {
+  return orgs.slice(0, limit);
 }

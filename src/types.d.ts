@@ -6,6 +6,7 @@ export interface CardProps {
 }
 
 export interface OrgProps {
+  id: string;
   name: string;
   description: string;
   causes: string[];
