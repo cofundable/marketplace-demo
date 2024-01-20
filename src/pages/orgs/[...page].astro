@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { fetchOrgs } from "@/lib/data";
+
+export async function getStaticPaths() {
+  const orgs = await fetchOrgs({
+    limit: 10,
+  });
+  return orgs.map((org) => ({
+    params: { page: org.id },
+    props: { org: org },
+  }));
+}
+
+const { org } = Astro.props;
+---
+
+<Layout title={org.name}>
+  <div>Good dog, {org.name}!</div>
+</Layout>

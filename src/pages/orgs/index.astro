@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { fetchOrgs } from "@/lib/data";
+
+const orgs = await fetchOrgs({ limit: 10 });
+---
+
+<Layout title="All organizations">
+  <ul>
+    {
+      orgs.map((org) => (
+        <li>
+          <a href={`/orgs/${org.id}`}>{org.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
