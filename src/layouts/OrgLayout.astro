@@ -1,0 +1,35 @@
+---
+import Banner from "@/components/org-details/sections/Banner.astro";
+import Navigation from "@/components/org-details/sections/Navigation.astro";
+import HowItWorks from "@/components/org-details/sections/HowItWorks.astro";
+import Layout from "@/layouts/Layout.astro";
+import type { OrgProps, NavLink } from "@/types";
+
+interface Props {
+  org: OrgProps;
+  currPage: string;
+}
+
+const { org, currPage } = Astro.props;
+const sections = [
+  {
+    label: "About",
+    href: `/orgs/${currPage}`,
+  },
+  {
+    label: "Team",
+    href: `/orgs/${currPage}/team`,
+  },
+  {
+    label: "Updates",
+    href: `/orgs/${currPage}/updates`,
+  },
+] as NavLink[];
+---
+
+<Layout title={org.name}>
+  <Banner org={org} />
+  <HowItWorks />
+  <Navigation sections={sections} />
+  <slot name="section-content" />
+</Layout>

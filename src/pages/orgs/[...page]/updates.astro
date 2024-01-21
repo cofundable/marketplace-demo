@@ -1,10 +1,6 @@
 ---
-import Banner from "@/components/org-details/sections/Banner.astro";
-import Navigation from "@/components/org-details/sections/Navigation.astro";
-import HowItWorks from "@/components/org-details/sections/HowItWorks.astro";
-import Layout from "@/layouts/Layout.astro";
+import Layout from "@/layouts/OrgLayout.astro";
 import { fetchOrgs } from "@/lib/data";
-import type { NavLink } from "@/types";
 
 export async function getStaticPaths() {
   const orgs = await fetchOrgs({
@@ -18,27 +14,12 @@ export async function getStaticPaths() {
 
 const { org } = Astro.props;
 const { page } = Astro.params;
-const sections = [
-  {
-    label: "About",
-    href: `/orgs/${page}`,
-  },
-  {
-    label: "Team",
-    href: `/orgs/${page}/team`,
-  },
-  {
-    label: "Updates",
-    href: `/orgs/${page}/updates`,
-  },
-] as NavLink[];
 ---
 
-<Layout title={org.name}>
-  <Banner org={org} />
-  <HowItWorks />
-  <Navigation sections={sections} />
-  <div class="max-w-6xl py-12 mx-auto text-3xl text-primary font-bold">
-    Updates go here
-  </div>
+<Layout org={org} currPage={page}>
+  <Fragment slot="section-content">
+    <div class="max-w-6xl py-12 mx-auto text-3xl text-primary font-bold">
+      Updates go here
+    </div>
+  </Fragment>
 </Layout>
