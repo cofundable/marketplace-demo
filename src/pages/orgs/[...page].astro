@@ -1,4 +1,5 @@
 ---
+import Button from "@/components/ui/button.astro";
 import Layout from "@/layouts/Layout.astro";
 import { fetchOrgs } from "@/lib/data";
 
@@ -13,8 +14,116 @@ export async function getStaticPaths() {
 }
 
 const { org } = Astro.props;
+const sections = ["About", "Team", "Updates"];
+const stats = [
+  {
+    value: "1,200",
+    description: "shares pledged",
+  },
+  {
+    value: "523",
+    description: "cofunders",
+  },
+];
+const actions = [
+  {
+    variant: "primary",
+    text: "Pledge shares",
+  },
+  {
+    variant: "secondary",
+    text: "Bookmark",
+  },
+];
+const steps = [
+  "Earn shares when you donate time or resources to Cofundable's marketplace.",
+  "Pledge your shares to the causes and organizations you want to support.",
+  "Organizations use those shares to get what they need from the marketplace.",
+];
 ---
 
 <Layout title={org.name}>
-  <div>Good dog, {org.name}!</div>
+  <section id="banner" class="relative bg-muted pb-8">
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="pt-8 md:pt-10">
+        <div class="text-center max-w-6xl mx-auto">
+          <h1
+            class="text-2xl md:text-3xl font-medium leading-tighter mb-4"
+            set:html={org.name}
+          />
+          <p
+            class="text-base md:text-lg text-muted-foreground pb-4"
+            set:html={org.description}
+          />
+        </div>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="min-h-72 min-w-124 bg-neutral-400 rounded-lg"></div>
+        <div class="flex flex-col px-2 md:px-12 md:py-2">
+          <div
+            class="grow flex flex-col justify-center py-3 border-y-4 border-y-primary"
+          >
+            <div class="grid grid-cols-2 gap-4 text-center py-6">
+              {
+                stats.map((stat) => (
+                  <div class="flex flex-col justify-center pb-4">
+                    <div class="text-3xl font-semibold text-foreground py-2">
+                      {stat.value}
+                    </div>
+                    <div class="text-muted-foreground">{stat.description}</div>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="grid grid-cols-1 sm:justify-center gap-4">
+              {
+                Array.isArray(actions) ? (
+                  actions.map((action) => (
+                    <div class="flex w-full sm:max-w-md sm:mx-auto">
+                      <Button {...(action || {})} class="w-full sm:mb-0" />
+                    </div>
+                  ))
+                ) : (
+                  <Fragment set:html={actions} />
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="how-it-works" class="bg-muted">
+    <div class="max-w-6xl mx-auto px-6 pt-2 pb-10">
+      <h2 class="text-xl font-semibold pb-2">How it works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4">
+        {
+          steps.map((step, index) => (
+            <div class="flex space-x-3">
+              <p class="text-xl font-medium text-primary">{`${index + 1}.`}</p>
+              <p class="text-base text-muted-foreground">{step}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section id="org-navigation" class="border">
+    <div class="max-w-6xl mx-auto px-6">
+      <ul class="flex space-x-8">
+        {
+          sections.map((section) => (
+            <li class="py-3">
+              <a
+                href="#"
+                class="pb-3 text-md text-muted-foreground font-medium hover:text-foreground hover:border-b-2 hover:border-b-secondary"
+              >
+                {section}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 </Layout>
