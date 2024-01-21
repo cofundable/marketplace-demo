@@ -1,0 +1,21 @@
+---
+import { BannerHeading } from "@/components/org-details/components/banner-heading";
+import { BannerGrid } from "@/components/org-details/components/banner-grid";
+
+import type { OrgProps } from "@/types";
+
+interface Props {
+  org: OrgProps;
+}
+
+const { org } = Astro.props;
+---
+
+<section id="banner" class="relative bg-muted pb-8">
+  <div class="relative max-w-6xl mx-auto px-6">
+    <div class="pt-8 md:pt-10">
+      <BannerHeading name={org.name} description={org.description} />
+      <BannerGrid stats={org.stats} />
+    </div>
+  </div>
+</section>

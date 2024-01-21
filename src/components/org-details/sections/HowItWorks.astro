@@ -1,0 +1,23 @@
+---
+const steps = [
+  "Earn shares when you donate time or resources to Cofundable's marketplace.",
+  "Pledge your shares to the causes and organizations you want to support.",
+  "Organizations use those shares to get what they need from the marketplace.",
+];
+---
+
+<section id="how-it-works" class="bg-muted">
+  <div class="max-w-6xl mx-auto px-6 pt-2 pb-10">
+    <h2 class="text-xl font-semibold pb-2">How it works</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4">
+      {
+        steps.map((step, index) => (
+          <div class="flex space-x-3">
+            <p class="text-xl font-medium text-primary">{`${index + 1}.`}</p>
+            <p class="text-base text-muted-foreground">{step}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

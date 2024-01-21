@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-import type { OrgProps } from "@/types";
+import type { OrgProps, Statistic } from "@/types";
 
 /**
  * Optional parameters to set explicitly when generating a fake org
@@ -30,6 +30,16 @@ function createFakeOrg({ isFeatured, tag, cause }: OrgParams): OrgProps {
   const causes = cause
     ? ["Environment", "Workforce development", cause]
     : ["Education", "Children"];
+  const stats = [
+    {
+      value: Math.floor(Math.random() * 1000).toString(),
+      description: "shares pledged",
+    },
+    {
+      value: Math.floor(Math.random() * 500).toString(),
+      description: "cofunders",
+    },
+  ] as Statistic[];
   return {
     id: faker.string.uuid(),
     name: faker.company.name(),
@@ -38,6 +48,7 @@ function createFakeOrg({ isFeatured, tag, cause }: OrgParams): OrgProps {
     tags: tags,
     isFeatured: isFeatured || Math.random() > 0.5, // randomly return boolean value
     sharesCount: Math.random() * 100,
+    stats: stats,
   };
 }
 

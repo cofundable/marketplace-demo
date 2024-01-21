@@ -7,6 +7,11 @@ export interface CardProps {
   badges: Array<string>;
 }
 
+export interface Statistic {
+  value: string;
+  description: string;
+}
+
 export interface OrgProps {
   id: string;
   name: string;
@@ -15,6 +20,7 @@ export interface OrgProps {
   tags: string[];
   isFeatured: boolean;
   sharesCount: number;
+  stats?: Statistic[];
 }
 
 export interface CallToAction extends HTMLAttributes<a> {
@@ -22,4 +28,10 @@ export interface CallToAction extends HTMLAttributes<a> {
   text?: string;
   icon?: string;
   classes?: Record<string, string>;
+}
+
+export interface NavLink {
+  label: string;
+  href: string;
+  description: string;
 }

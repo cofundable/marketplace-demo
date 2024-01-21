@@ -1,0 +1,33 @@
+---
+import type { NavLink } from "@/types";
+
+interface Props {
+  sections: NavLink[];
+}
+
+const currPath = Astro.url.pathname;
+const { sections } = Astro.props;
+---
+
+<section id="org-navigation" class="border">
+  <div class="max-w-6xl mx-auto px-6">
+    <ul class="flex space-x-8">
+      {
+        sections.map((section) => {
+          // Underlines the section link if it is the active section
+          const className =
+            section.href == currPath
+              ? "pb-3 text-md text-muted-foreground font-medium hover:text-foreground border-b-2 border-b-secondary"
+              : "pb-3 text-md text-muted-foreground font-medium hover:text-foreground hover:border-b-2 hover:border-b-secondary";
+          return (
+            <li class="py-3">
+              <a href={section.href} class={className}>
+                {section.label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
