@@ -1,8 +1,30 @@
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
 export function PledgeButtonPrimary() {
   return (
-    <div className="flex w-full sm:max-w-md sm:mx-auto">
-      <button className="btn-primary w-full sm:mb-0">Pledge shares</button>
-    </div>
+    <Sheet>
+      <SheetTrigger asChild>
+        <div className="flex w-full sm:max-w-md sm:mx-auto">
+          <button className="btn-primary w-full sm:mb-0">Pledge shares</button>
+        </div>
+      </SheetTrigger>
+      <SheetContent className="max-w-full">
+        <SheetHeader>
+          <SheetTitle>Pledge shares</SheetTitle>
+          <SheetDescription>
+            Initiatives can use your shares to get things that they need from
+            Cofundable's marketplace
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
   );
 }
 

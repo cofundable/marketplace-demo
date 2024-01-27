@@ -15,7 +15,7 @@ const { org } = Astro.props;
   <div class="relative max-w-6xl mx-auto px-6">
     <div class="pt-8 md:pt-10">
       <BannerHeading name={org.name} description={org.description} />
-      <BannerGrid stats={org.stats} />
+      <BannerGrid stats={org.stats} client:idle />
     </div>
   </div>
 </section>
