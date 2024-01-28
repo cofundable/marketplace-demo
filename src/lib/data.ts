@@ -73,7 +73,6 @@ export function mockFetchOrgs({
 }
 
 const orgs = mockFetchOrgs({ limit: 50 });
-console.log(orgs.map((org) => org.name));
 
 /**
  * Fetch an array of orgs, optionally filtering by tags, categories, or featured status
